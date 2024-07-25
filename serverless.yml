@@ -1,0 +1,47 @@
+#Serverless Configurations!
+service: backend-nodejs-serverless
+provider:
+  name: aws
+  runtime: nodejs18.x # set node.js runtime
+  stage: ${opt:stage, 'dev'}
+  region: ${opt:region, 'ap-south-1'}
+  lambdaHashingVersion: 20201221
+  memorySize: 2048 # set the maximum memory of the Lambdas in Megabytes
+  timeout: 30 # the timeout is 10 seconds (default is 6 seconds)
+
+package:
+  excludeDevDependencies: true
+  exclude:
+    - venv/**
+
+plugins:
+  - serverless-offline
+  - serverless-prune-plugin
+  - serverless-disable-functions
+  - serverless-dotenv-plugin
+
+custom:
+  prune:
+    automatic: true
+    includeLayers: true
+    number: 3
+
+functions:
+  server:
+    handler: server.run # point to exported create function in handler.js
+    events:
+      - http: ANY /
+      - http: "ANY /{proxy+}"
+
+  app:
+    handler: server.run
+    events:
+      - http: "ANY /app/{proxy+}"
+
+  admin:
+    handler: server.run
+    events:
+      - http: "ANY /admin/{proxy+}"
+
+
+  

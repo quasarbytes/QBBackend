@@ -2,8 +2,9 @@
   "name": "quasarbytes",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "handler.js",
   "scripts": {
+    "offline": "sls offline start --reloadHandler --httpPort 3000",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Shadab Hussain",
@@ -21,6 +22,13 @@
     "morgan": "^1.10.0",
     "multer": "^1.4.2",
     "nodemon": "^2.0.7",
-    "request": "^2.88.2"
-  }
+    "request": "^2.88.2",
+    "serverless-http": "^2.7.0"
+  },
+  "devDependencies": {
+		"serverless-disable-functions": "^0.1.0",
+		"serverless-dotenv-plugin": "^6.0.0",
+		"serverless-offline": "^12.0.4",
+		"serverless-prune-plugin": "^2.0.2"
+	}
 }

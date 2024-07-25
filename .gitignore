@@ -1,0 +1,19 @@
+# package directories
+node_modules
+jspm_packages
+
+
+# Serverless directories
+.serverless
+
+yarn.lock
+package-lock.json
+*.lock
+yarn-error.log
+
+# Secret directories
+#variables.env
+#config.dev.json
+#config.local.json
+#config.prod.json
+DS_Store

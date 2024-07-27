@@ -10,14 +10,17 @@ app.use(express.urlencoded({
 
 app.use(cors('Access-Control-Allow-Origin', '*'));
 
-connection_uri = "mongodb+srv://quasarbytes:wHKYdAj2Z9Y5GQFf@cluster0.apczzwy.mongodb.net/";
+connection_uri = "mongodb+srv://quasarbytes:wHKYdAj2Z9Y5GQFf@cluster0.apczzwy.mongodb.net/dev";
+
 mongoose.Promise = global.Promise;
-system_db = mongoose.connect(connection_uri, { useFindAndModify: false }, {
-    native_parser : true
+system_db = mongoose.connect(connection_uri, { 
+    useNewUrlParser: true, 
+    useUnifiedTopology: true, 
+    useFindAndModify: false 
 }, function(err){
     if (err) throw err;
+    console.log('Connected to MongoDB');
 });
-mongoose.set('useUnifiedTopology', true);
 
 
 const QuasarContact = require('./api/routes/QuasarContact')
